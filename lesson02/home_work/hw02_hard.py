@@ -24,6 +24,23 @@ date = '01.22.1001'
 date = '1.12.1001'
 date = '-2.10.3001'
 
+print("#2")
+data3 = input("Input date in dd.mm.yyyy format: ")
+if data3.__len__() == 10 and data3[2] == "." and data3[5] == ".":
+    numeric_day = int(data3[:2])
+    numeric_month = int(data3[3:5])
+    numeric_year = int(data3[6:])
+    if 0 < numeric_day <= 31 and 0 < numeric_month <= 12 and 1 <= numeric_year <= 9999 or \
+            (numeric_day < 29 and numeric_month == 2 and 1 <= numeric_year <= 9999):
+        if numeric_day == 31 and numeric_month in [4, 6, 9, 11]:
+            print("Введите корректную дату")
+        else:
+            string_date = "{}.{}.{} года".format(numeric_day, numeric_month, numeric_year)
+            print(string_date)
+    else:
+        print("Введите корректную дату")
+else:
+    print("Введите корректную дату")
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
 #
