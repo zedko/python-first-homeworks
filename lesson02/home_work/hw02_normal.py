@@ -67,3 +67,23 @@ print(the_list)
 # например, lst = [1, 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 2, 4, 5, 6]
 # б) элементы исходного списка, которые не имеют повторений:
 # например, lst = [1 , 2, 4, 5, 6, 2, 5, 2], нужно получить lst2 = [1, 4, 6]
+
+print("#4")
+lst = []
+filler = "empty"
+while filler != "end":
+    filler = input("Input next element or ""end"": ")
+    if filler == "end":
+        print(lst)
+        break
+    else:
+        lst.append(int(filler))
+filler = "empty"
+set_lst = set(lst)
+lst_set_lst = list(set_lst)
+print(lst_set_lst)
+for i in range(0, lst_set_lst.__len__()):
+    if lst.count(lst_set_lst[i]) > 1:
+        while lst.count(lst_set_lst[i]) != 0:
+            lst.remove(lst_set_lst[i])
+print(lst)
