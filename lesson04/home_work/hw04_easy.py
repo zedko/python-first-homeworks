@@ -1,6 +1,6 @@
 # Все задачи текущего блока решите с помощью генераторов списков!
 import random
-import math
+
 
 # Задание-1:
 # Дан список, заполненный произвольными целыми числами. 
@@ -31,3 +31,11 @@ print(fruits_three)
 # + Элемент кратен 3
 # + Элемент положительный
 # + Элемент не кратен 4
+
+# a_list = [random.uniform(-100, 10000) for _ in range(15)]
+# с произвольными числами слишком маловероятнен шанс выполнения всех условий, используем randint
+a_list = [random.randint(-100, 10000) for _ in range(15)]
+print(a_list)
+b_list = list(filter(lambda x: x % 3 == 0 and x > 0 and x % 4 != 0, a_list))
+print(b_list)
+
