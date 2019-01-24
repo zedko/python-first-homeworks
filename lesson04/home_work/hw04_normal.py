@@ -1,4 +1,6 @@
 import re
+import os
+import random
 
 # Задание-1:
 # Вывести символы в нижнем регистре, которые находятся вокруг
@@ -34,7 +36,7 @@ for x in list_line:
         lowers = ''
 while '' in list_lowers:
     list_lowers.remove('')
-print(list_lowers)
+# print(list_lowers)
 
 #решение с re
 regex = r'([^a-z])'
@@ -44,7 +46,7 @@ for x in list_lowers_2:
     if x.isupper():
         list_lowers_2.remove(x)
 list_lowers_2 = list(filter(None, list_lowers_2))
-print(list_lowers_2)
+# print(list_lowers_2)
 
 
 
@@ -72,9 +74,40 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm' \
          'JFaXiUWgsKQrDOeZoNlZNRvHnLgCmysUeKnVJXPFIzvdDyleXylnKBfLCjLHntltignbQ' \
          'oiQzTYwZAiRwycdlHfyHNGmkNqSwXUrxGC'
 
+
+
 # Задание-3:
 # Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)
 # произвольными целыми цифрами, в результате в файле должно быть
 # 2500-значное произвольное число.
 # Найдите и выведите самую длинную последовательность одинаковых цифр
 # в вышезаполненном файле.
+
+# генерируем число и записываем его в файл
+integer_numbers = [str(random.randint(1, 9)) for _ in range(2500)]
+long_number = ''.join(integer_numbers)
+file_path = os.path.join('files', 'hw4_3.txt')
+
+with open(file_path, 'w') as the_file:
+    the_file.write(long_number)
+# открываем файл и ищем последовательности, сравниваем и записываем самую длинную
+repeatable_numbers = [] # здесь будем хранить самый длинный список повторов
+repeatable_numbers_temp = [] # временная переменная
+with open(file_path, 'r') as the_file:
+    numbers = list(the_file.readline())
+    last_number = 0
+    for x in numbers:
+        if x != last_number:
+            last_number = x
+            repeatable_numbers_temp.clear()
+            repeatable_numbers_temp.append(x)
+        else:
+            repeatable_numbers_temp.append(x)
+        if repeatable_numbers.__len__() < repeatable_numbers_temp.__len__():
+            repeatable_numbers.clear()
+            repeatable_numbers = repeatable_numbers_temp.copy()
+print(repeatable_numbers)
+
+
+
+
