@@ -17,12 +17,19 @@ class Teacher(object):
         self.subject = subj
 
 
+# class Lessons(Teacher):
+#     group: str
+#     subject: Teacher
+#
+#     def __init__(self, group):
+#         self.group = group
+
+
 class Student(object):
     s_name: str  # FIO
     group: str  # 7A
     father_name: str  # Alex
     mother_name: str  # Olga
-    
 
     def __init__(self, name, group, father, mother):
         self.s_name = name
@@ -33,9 +40,17 @@ class Student(object):
     def get_student_group(self):
         return self.group
 
-# class Learning(Teacher, Student):
+    def get_student_info(self):
+        return {
+            "Name": self.s_name,
+            "Group": self.group,
+            "Father": self.father_name,
+            "Mother": self.mother_name
+        }
 
 
+
+# test data
 stud_1_test = Student("Sergey Bodrov", "7A", "Alexey", "Yulya")
 stud_2_test = Student("Jenya Ivanova", "7A", "Ivan", "Olesya")
 stud_3_test = Student("Daniil Rostkov", "6B", "Nikolai", "Irina")
@@ -57,8 +72,6 @@ while True:
     else:
         break
 
-print(student_list)
-
 
 def get_groups():
     groups = set([x.get_student_group() for x in student_list])
@@ -66,8 +79,10 @@ def get_groups():
 
 
 def get_students_in_group(group):
-
-    pass
+    # getting list of students in group
+    students = map(lambda i: i["Name"], list(filter(lambda y: y["Group"] == str(group),
+                                                    [x.get_student_info() for x in student_list])))
+    return list(students)
 
 def get_student_lessons(student_name):
     pass
@@ -87,3 +102,4 @@ def get_group_teachers(group):
 
 
 print("All groups:", get_groups())
+print("All student of group 7A: ", get_students_in_group("7A"))
